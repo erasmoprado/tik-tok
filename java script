@@ -1,0 +1,103 @@
+const cards = document.querySelectorAll(".video-card");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+
+let current = 0;
+
+// MOSTRAR VÍDEO
+function showVideo(index) {
+  cards.forEach((card, i) => {
+    const video = card.querySelector("video");
+
+    card.classList.remove("active");
+    video.pause();
+
+    if (i === index) {
+      card.classList.add("active");
+      
+      // O autoplay precisa do catch caso o navegador bloqueie o som inicialmente
+      video.play().catch(error => {
+        console.log("A reprodução automática aguarda a interação do utilizador.");
+      });
+    }
+  });
+}
+
+// FUNÇÕES DE NAVEGAÇÃO
+function nextVideo() {
+  current++;
+  if (current >= cards.length) {
+    current = 0;
+  }
+  showVideo(current);
+}
+
+function prevVideo() {
+  current--;
+  if (current < 0) {
+    current = cards.length - 1;
+  }
+  showVideo(current);
+}
+
+// EVENTOS DOS BOTÕES DE NAVEGAÇÃO
+nextBtn.addEventListener("click", nextVideo);
+prevBtn.addEventListener("click", prevVideo);
+
+// NAVEGAÇÃO POR TECLADO (Setas para Cima/Baixo ou Esquerda/Direita)
+window.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+    nextVideo();
+  } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+    prevVideo();
+  }
+});
+
+// GOSTAR (Gosto Dinâmico com Contador)
+const likeButtons = document.querySelectorAll(".like-btn");
+
+likeButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const isLiked = btn.classList.toggle("like-active");
+    const countSpan = btn.querySelector("span");
+    let currentLikes = parseInt(countSpan.textContent);
+
+    // Atualiza o número de gostos de forma visível
+    if (isLiked) {
+      countSpan.textContent = currentLikes + 1;
+    } else {
+      countSpan.textContent = currentLikes - 1;
+    }
+  });
+});
+
+// COMENTAR
+const commentButtons = document.querySelectorAll(".comment-btn");
+
+commentButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    alert("A abrir a secção de comentários!");
+  });
+});
+
+// PARTILHAR
+const shareButtons = document.querySelectorAll(".share-btn");
+
+shareButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    if (navigator.share) {
+      navigator.share({
+        title: "Mini TikTok",
+        text: "Vê este vídeo fantástico!",
+        url: window.location.href
+      });
+    } else {
+      // Alternativa caso o navegador não tenha a API de partilha (ex: desktops)
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copiado para a área de transferência!");
+    }
+  });
+});
+
+// INICIAR PRIMEIRO VÍDEO
+showVideo(current);
