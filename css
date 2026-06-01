@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini TikTok</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <div class="video-card active">
+      <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay muted loop></video>
+
+      <div class="overlay">
+        <h2>@usuario1</h2>
+        <p>Primeiro vídeo 🔥</p>
+      </div>
+
+      <div class="actions">
+        <button class="like-btn">
+          <i class="fa-solid fa-heart"></i>
+          <span>120</span>
+        </button>
+
+        <button class="comment-btn">
+          <i class="fa-solid fa-comment"></i>
+          <span>35</span>
+        </button>
+
+        <button class="share-btn">
+          <i class="fa-solid fa-share"></i>
+          <span>12</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" muted loop></video>
+
+      <div class="overlay">
+        <h2>@usuario2</h2>
+        <p>Natureza 🌸</p>
+      </div>
+
+      <div class="actions">
+        <button class="like-btn">
+          <i class="fa-solid fa-heart"></i>
+          <span>230</span>
+        </button>
+
+        <button class="comment-btn">
+          <i class="fa-solid fa-comment"></i>
+          <span>48</span>
+        </button>
+
+        <button class="share-btn">
+          <i class="fa-solid fa-share"></i>
+          <span>20</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video src="https://www.w3schools.com/html/movie.mp4" muted loop></video>
+
+      <div class="overlay">
+        <h2>@usuario3</h2>
+        <p>Último vídeo 🚀</p>
+      </div>
+
+      <div class="actions">
+        <button class="like-btn">
+          <i class="fa-solid fa-heart"></i>
+          <span>540</span>
+        </button>
+
+        <button class="comment-btn">
+          <i class="fa-solid fa-comment"></i>
+          <span>90</span>
+        </button>
+
+        <button class="share-btn">
+          <i class="fa-solid fa-share"></i>
+          <span>44</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <button id="prevBtn" aria-label="Vídeo anterior">
+        <i class="fa-solid fa-arrow-left">
